@@ -144,7 +144,7 @@ While Sultana et al. conducted their analysis primarily in R using Seurat and Mo
 Rather than relying solely on single-cell–level differential expression, this project adopts a pseudobulk strategy that aggregates cells by sample and condition. This reduces single-cell noise, incorporates biological replication, and improves the robustness and reproducibility of differential expression results.
 
 **3. Explicit Training–Validation Separation**  
-This study explicitly separates training (Single-Cell Lung Cancer Atlas) and validation (GSE40419, GSE19188) datasets. Additional orthogonal validation is performed using a **tumor-only cohort (GSE30219), enabling intra-tumoral stratification independent of normal tissue comparisons—an extension not emphasized in the original study.
+This study explicitly separates training (Single-Cell Lung Cancer Atlas) and validation (GSE40419, GSE19188) datasets. Additional orthogonal validation is performed using a tumor-only cohort (GSE30219), enabling intra-tumoral stratification independent of normal tissue comparisons—an extension not emphasized in the original study.
 
 **4. Baseline Normal Lung Filtering Using Tabula Sapiens**  
 Candidate biomarkers are filtered using Tabula Sapiens Lung single-cell reference data to deprioritize genes with high baseline expression in healthy lung tissue. This step increases cancer specificity and was not a core component of the original pipeline.
