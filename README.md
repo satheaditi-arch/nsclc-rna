@@ -1,13 +1,13 @@
 # Single-Cell RNA-Seq Analysis to Identify Potential Biomarkers of Non-Small Cell Lung Cancer (NSCLC)
 
 **Authors:** Aditi S, Jenna K, Liv R, Jennifer G, Montserrat P  
-**Goal:** Build a reproducible discovery + validation pipeline to identify NSCLC-associated gene signatures and pathways using **single-cell RNA-seq** (training) and **bulk RNA-seq / microarray** cohorts (validation), with clinical relevance assessed via **TCGA survival**.
+**Goal:** Build a reproducible discovery + validation pipeline to identify NSCLC-associated gene signatures and pathways using single-cell RNA-seq (training) and bulk RNA-seq / microarray cohorts (validation), with clinical relevance assessed via TCGA survival.
 
 ---
 
 ## Project Overview
 
-Non-small cell lung cancer (NSCLC) comprises **>85%** of lung cancers and is highly heterogeneous, making robust biomarker discovery challenging. This project replicates and extends a comprehensive bioinformatics workflow (inspired by Sultana et al., 2023) using **Python**, emphasizing:
+Non-small cell lung cancer (NSCLC) comprises >85% of lung cancers and is highly heterogeneous, making robust biomarker discovery challenging. This project replicates and extends a comprehensive bioinformatics workflow (inspired by Sultana et al., 2023) using Python, emphasizing:
 
 - Tumor vs non-malignant cell-state differences at single-cell resolution
 - Pseudobulk differential expression to reduce scRNA noise
@@ -18,10 +18,10 @@ Non-small cell lung cancer (NSCLC) comprises **>85%** of lung cancers and is hig
 **Key training genes (single-cell):** `ARHGAP9`, `C16orf54`, `CHST11`, `AOAH`  
 **Most reproducible bulk marker:** `C16orf54` (consistent tumor-suppressed signal)
 
-**Consistent pathway themes across datasets:**  
-- **p53 / DNA damage response**
-- **Hypoxia**
-- **Reactive Oxygen Species (ROS)**
+Consistent pathway themes across datasets:
+- p53 / DNA damage response
+- Hypoxia
+- Reactive Oxygen Species (ROS)
 - immune signaling programs (context-dependent)
 
 ---
@@ -132,33 +132,26 @@ Sultana A, Alam MS, Liu X, Sharma R, Singla RK, Gundamaraju R, Shen B.
 https://doi.org/10.1016/j.tranon.2022.101571
 
 This project replicates and extends the above study using a fully Python-based workflow (Scanpy, GSEApy, lifelines, scikit-learn), incorporating additional validation datasets and pathway-level analyses.
+
 ## How This Project Differs from Sultana et al. (2023)
 
 This project was inspired by the study of Sultana et al. (2023) but introduces several important methodological, technical, and analytical extensions that distinguish it as an independent and expanded investigation.
 
 **1. Python-Based Reimplementation**  
-While Sultana et al. conducted their analysis primarily in R using Seurat and Monocle, this project fully reimplements the pipeline in **Python**, leveraging Scanpy, GSEApy, lifelines, NetworkX, and scikit-learn. This improves accessibility for Python-based workflows and enables seamless integration with modern machine learning tools.
+While Sultana et al. conducted their analysis primarily in R using Seurat and Monocle, this project fully reimplements the pipeline in Python, leveraging Scanpy, GSEApy, lifelines, NetworkX, and scikit-learn. This improves accessibility for Python-based workflows and enables seamless integration with modern machine learning tools.
 
 **2. Pseudobulk Differential Expression Framework**  
-Rather than relying solely on single-cell–level differential expression, this project adopts a **pseudobulk strategy** that aggregates cells by sample and condition. This reduces single-cell noise, incorporates biological replication, and improves the robustness and reproducibility of differential expression results.
+Rather than relying solely on single-cell–level differential expression, this project adopts a pseudobulk strategy that aggregates cells by sample and condition. This reduces single-cell noise, incorporates biological replication, and improves the robustness and reproducibility of differential expression results.
 
 **3. Explicit Training–Validation Separation**  
-This study explicitly separates **training** (Single-Cell Lung Cancer Atlas) and **validation** (GSE40419, GSE19188) datasets. Additional orthogonal validation is performed using a **tumor-only cohort (GSE30219)**, enabling intra-tumoral stratification independent of normal tissue comparisons—an extension not emphasized in the original study.
+This study explicitly separates training (Single-Cell Lung Cancer Atlas) and validation (GSE40419, GSE19188) datasets. Additional orthogonal validation is performed using a **tumor-only cohort (GSE30219), enabling intra-tumoral stratification independent of normal tissue comparisons—an extension not emphasized in the original study.
 
 **4. Baseline Normal Lung Filtering Using Tabula Sapiens**  
-Candidate biomarkers are filtered using **Tabula Sapiens Lung** single-cell reference data to deprioritize genes with high baseline expression in healthy lung tissue. This step increases cancer specificity and was not a core component of the original pipeline.
+Candidate biomarkers are filtered using Tabula Sapiens Lung single-cell reference data to deprioritize genes with high baseline expression in healthy lung tissue. This step increases cancer specificity and was not a core component of the original pipeline.
 
-**5. Integrated Pathway-Level Reproducibility Analysis**  
-Given the heterogeneity of NSCLC, this project emphasizes **pathway-level consistency** across datasets rather than relying solely on gene-level overlap. Hallmark and KEGG gene set enrichment analyses are used systematically to identify conserved biological programs such as hypoxia, p53 signaling, ROS response, and immune activation.
+**5. Regulatory Network and Systems-Level Interpretation**  
+Beyond differential expression, this project constructs gene–gene co-expression networks to identify hub genes and modular regulatory programs. The resulting networks support a systems-level model of NSCLC progression rather than a single-driver gene hypothesis.
 
-**6. Regulatory Network and Systems-Level Interpretation**  
-Beyond differential expression, this project constructs **gene–gene co-expression networks** to identify hub genes and modular regulatory programs. The resulting networks support a systems-level model of NSCLC progression rather than a single-driver gene hypothesis.
-
-**7. Quantitative Diagnostic Evaluation via ROC Analysis**  
-A supervised classification step using **logistic regression and ROC/AUC evaluation** is incorporated to quantify the diagnostic potential of identified biomarkers. This provides a translational performance metric not explicitly reported in Sultana et al.
-
-**8. Extended Clinical Validation and Interpretation**  
-Clinical relevance is assessed using both **Kaplan–Meier survival analysis and Cox proportional hazards modeling** in TCGA LUAD and LUSC cohorts, with additional interpretation of subtype-specific effects and pathway associations.
-
-Together, these extensions transform the original descriptive bioinformatics framework into a **scalable, reproducible discovery and validation engine** suitable for biomarker prioritization, translational research, and future integration with machine learning–driven diagnostic or therapeutic pipelines.
+**6. Extended Clinical Validation and Interpretation**  
+Clinical relevance is assessed using both Kaplan–Meier survival analysis and Cox proportional hazards modeling in TCGA LUAD and LUSC cohorts, with additional interpretation of subtype-specific effects and pathway associations.
 
